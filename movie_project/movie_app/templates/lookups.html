@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Lookups</title>
+</head>
+<body>
+
+<h1>Django ORM Lookups</h1>
+
+<h2>1. EXACT - Movies</h2>
+{% for movie in movie_exact %}
+    <p>
+        Title: {{ movie.title }} |
+        Genre: {{ movie.genre }} |
+        Duration: {{ movie.duration_minutes }} |
+        Rating: {{ movie.rating }}
+    </p>
+{% empty %}
+    <p>ფილმი ვერ მოიძებნა.</p>
+{% endfor %}
+
+
+<h2>2. CONTAINS - Viewers</h2>
+{% for viewer in viewers_contains_lastname %}
+    <p>
+        {{ viewer.first_name }} {{ viewer.last_name }} |
+        {{ viewer.email }}
+    </p>
+{% empty %}
+    <p>მაყურებელი ვერ მოიძებნა.</p>
+{% endfor %}
+
+
+<h2>3. STARTSWITH - Genre</h2>
+{% for movie in genre_starts %}
+    <p>{{ movie.title }}</p>
+{% empty %}
+    <p>ფილმი ვერ მოიძებნა.</p>
+{% endfor %}
+
+
+<h2>4. ENDSWITH - Email</h2>
+{% for viewer in email_ends %}
+    <p>
+        {{ viewer.first_name }} {{ viewer.last_name }} |
+        {{ viewer.email }}
+    </p>
+{% empty %}
+    <p>მაყურებელი ვერ მოიძებნა.</p>
+{% endfor %}
+
+
+<h2>5. GT - Long Movies</h2>
+{% for movie in long_movies %}
+    <p>
+        {{ movie.title }} |
+        {{ movie.duration_minutes }} minutes
+    </p>
+{% empty %}
+    <p>ფილმი ვერ მოიძებნა.</p>
+{% endfor %}
+
+
+<h2>6. GTE - High Score Reviews</h2>
+{% for review in high_score_reviews %}
+    <p>
+        Movie: {{ review.movie.title }} |
+        Viewer:
+        {% if review.viewer %}
+            {{ review.viewer.first_name }} {{ review.viewer.last_name }}
+        {% else %}
+            უცნობი მაყურებელი
+        {% endif %}
+        |
+        Score: {{ review.score }}
+    </p>
+{% empty %}
+    <p>შეფასება ვერ მოიძებნა.</p>
+{% endfor %}
+
+
+<h2>7. LT - Low Rating Movies</h2>
+{% for movie in low_rating_movies %}
+    <p>
+        {{ movie.title }} |
+        Rating: {{ movie.rating }}
+    </p>
+{% empty %}
+    <p>ფილმი ვერ მოიძებნა.</p>
+{% endfor %}
+
+
+<h2>8. LTE - Young Viewers</h2>
+{% for viewer in young_viewers %}
+    <p>
+        {{ viewer.first_name }} {{ viewer.last_name }} |
+        Age: {{ viewer.age }}
+    </p>
+{% empty %}
+    <p>მაყურებელი ვერ მოიძებნა.</p>
+{% endfor %}
+
+
+<h2>9. RANGE - Medium Length Movies</h2>
+{% for movie in medium_length_movies %}
+    <p>
+        {{ movie.title }} |
+        {{ movie.duration_minutes }} minutes
+    </p>
+{% empty %}
+    <p>ფილმი ვერ მოიძებნა.</p>
+{% endfor %}
+
+
+<h2>10. IN - Movies in List</h2>
+{% for movie in movies_in_list %}
+    <p>{{ movie.title }}</p>
+{% empty %}
+    <p>ფილმი ვერ მოიძებნა.</p>
+{% endfor %}
+
+
+<h2>11. ISNULL - Reviews Without Viewer</h2>
+{% for review in reviews_without_viewer %}
+    <p>
+        Movie: {{ review.movie.title }} |
+        Score: {{ review.score }}
+    </p>
+{% empty %}
+    <p>შეფასება ვერ მოიძებნა.</p>
+{% endfor %}
+
+</body>
+</html>
